@@ -13,6 +13,7 @@
 		09D0E3F626A2C96C00C71C28 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09D0E3F526A2C96C00C71C28 /* Preview Assets.xcassets */; };
 		09FBDB6A26AC0AF70051023A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FBDB6926AC0AF70051023A /* User.swift */; };
 		09FBDB6D26AC18320051023A /* iTunesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FBDB6C26AC18320051023A /* iTunesView.swift */; };
+		09FBDB7126AC6CC00051023A /* Validating and Disabling Forms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FBDB7026AC6CC00051023A /* Validating and Disabling Forms.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		09D0E3F726A2C96C00C71C28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09FBDB6926AC0AF70051023A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		09FBDB6C26AC18320051023A /* iTunesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesView.swift; sourceTree = "<group>"; };
+		09FBDB7026AC6CC00051023A /* Validating and Disabling Forms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Validating and Disabling Forms.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			children = (
 				09FBDB6926AC0AF70051023A /* User.swift */,
 				09FBDB6C26AC18320051023A /* iTunesView.swift */,
+				09FBDB7026AC6CC00051023A /* Validating and Disabling Forms.swift */,
 			);
 			path = "Day 49";
 			sourceTree = "<group>";
@@ -155,6 +158,7 @@
 				09D0E3F126A2C96900C71C28 /* ContentView.swift in Sources */,
 				09D0E3EF26A2C96900C71C28 /* Cupcake_CornerApp.swift in Sources */,
 				09FBDB6D26AC18320051023A /* iTunesView.swift in Sources */,
+				09FBDB7126AC6CC00051023A /* Validating and Disabling Forms.swift in Sources */,
 				09FBDB6A26AC0AF70051023A /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
