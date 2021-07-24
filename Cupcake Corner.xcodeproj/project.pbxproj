@@ -12,6 +12,7 @@
 		09D0E3F326A2C96C00C71C28 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09D0E3F226A2C96C00C71C28 /* Assets.xcassets */; };
 		09D0E3F626A2C96C00C71C28 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09D0E3F526A2C96C00C71C28 /* Preview Assets.xcassets */; };
 		09FBDB6A26AC0AF70051023A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FBDB6926AC0AF70051023A /* User.swift */; };
+		09FBDB6D26AC18320051023A /* iTunesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FBDB6C26AC18320051023A /* iTunesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		09D0E3F526A2C96C00C71C28 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		09D0E3F726A2C96C00C71C28 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09FBDB6926AC0AF70051023A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		09FBDB6C26AC18320051023A /* iTunesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,8 +56,8 @@
 		09D0E3ED26A2C96900C71C28 /* Cupcake Corner */ = {
 			isa = PBXGroup;
 			children = (
-				09D0E3FE26A2C97900C71C28 /* Day 49 */,
 				09D0E3EE26A2C96900C71C28 /* Cupcake_CornerApp.swift */,
+				09D0E3FE26A2C97900C71C28 /* Day 49 */,
 				09D0E3F026A2C96900C71C28 /* ContentView.swift */,
 				09D0E3F226A2C96C00C71C28 /* Assets.xcassets */,
 				09D0E3F726A2C96C00C71C28 /* Info.plist */,
@@ -76,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				09FBDB6926AC0AF70051023A /* User.swift */,
+				09FBDB6C26AC18320051023A /* iTunesView.swift */,
 			);
 			path = "Day 49";
 			sourceTree = "<group>";
@@ -151,6 +154,7 @@
 			files = (
 				09D0E3F126A2C96900C71C28 /* ContentView.swift in Sources */,
 				09D0E3EF26A2C96900C71C28 /* Cupcake_CornerApp.swift in Sources */,
+				09FBDB6D26AC18320051023A /* iTunesView.swift in Sources */,
 				09FBDB6A26AC0AF70051023A /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

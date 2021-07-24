@@ -31,7 +31,7 @@ final class User: ObservableObject,
       let userDecodingContainer = try decoder.container(keyedBy: CodingKeys.self)
       
       self.name = try userDecodingContainer.decode(String.self,
-                                           forKey: CodingKeys.name)
+                                                   forKey: CodingKeys.name)
    }
    
    
