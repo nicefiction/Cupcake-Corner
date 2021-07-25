@@ -41,4 +41,19 @@ class Order: ObservableObject {
 
       return name.isEmpty || streetAddress.isEmpty || city.isEmpty || zip.isEmpty ? false : true
    }
+   
+   
+   var totalPrice: Double {
+      
+      // Base cost:
+      var cupcakeCost = 2 * Double(numberOfCakes)
+      // + Flavor:
+      cupcakeCost += Double(cakeTypeIndex) / 2
+      // + Sprinkles:
+      cupcakeCost += hasSprinkles ? Double(numberOfCakes) : 0
+      // + Frosting:
+      cupcakeCost += hasSprinkles ? Double(numberOfCakes) / 2 : 0
+      
+      return cupcakeCost
+   }
 }

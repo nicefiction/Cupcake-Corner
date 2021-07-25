@@ -15,7 +15,24 @@ struct CheckoutView: View {
    
    var body: some View {
       
-      Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+      GeometryReader { geometryProxy in
+         ScrollView(.vertical) {
+            VStack {
+               Image("cupcakes")
+                  .resizable()
+                  .scaledToFit()
+                  .frame(width: geometryProxy.size.width)
+               Text("Your order: $ \(order.totalPrice, specifier: "%.2f")")
+               Button(action: {
+                  print("The button is tapped.")
+               }) {
+                  Text("Place Order")
+               }
+               .padding()
+            }
+         }
+      }.navigationBarTitle("Checkout",
+                           displayMode: .inline)
    }
 }
 
