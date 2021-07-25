@@ -20,7 +20,23 @@ struct AddressView: View {
    
    var body: some View {
       
-      Text("\(order.numberOfCakes) \(Order.cakeTypes[order.cakeTypeIndex]) cakes.")
+      Form {
+         Section(header: Text("your order")) {
+            Text("\(order.numberOfCakes) \(Order.cakeTypes[order.cakeTypeIndex]) cakes.")
+         }
+         Section(header: Text("your address")) {
+            TextField("Your name...", text: $order.name)
+            TextField("Street...", text: $order.streetAddress)
+            TextField("City...", text: $order.city)
+            TextField("ZIP...", text: $order.zip)
+         }
+         Section {
+            NavigationLink("Checkout", destination: CheckoutView(order: order))
+         }
+         .disabled(order.hasValidAddress == false)
+      }
+      .navigationBarTitle(Text("Delivery Details"),
+                          displayMode: .inline)
    }
 }
 

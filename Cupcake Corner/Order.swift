@@ -19,33 +19,26 @@ class Order: ObservableObject {
    }
    @Published var hasFrosting: Bool = false
    @Published var hasSprinkles: Bool = false
+   @Published var name: String = ""
+   @Published var streetAddress: String = ""
+   @Published var city: String = ""
+   @Published var zip: String = ""
+   
    
    
    // MARK: - PROPERTIES
    
    static let cakeTypes: [String] = [
+      
       "Vanilla", "Chocolate", "Cinnamon", "Carrot"
    ]
    
    
+   
    // MARK: - COMPUTED PROPERTIES
    
-//   var hasDisabledOptions: Bool {
-//
-//      hasSpecialRequestEnabled ? false : true
-//   }
+   var hasValidAddress: Bool {
+
+      return name.isEmpty || streetAddress.isEmpty || city.isEmpty || zip.isEmpty ? false : true
+   }
 }
-
-
-/*
- class Order: ObservableObject {
-     static let types = ["Vanilla", "Strawberry", "Chocolate", "Rainbow"]
-
-     @Published var type = 0
-     @Published var quantity = 3
-
-     @Published var specialRequestEnabled = false
-     @Published var extraFrosting = false
-     @Published var addSprinkles = false
- }
- */
