@@ -3,7 +3,16 @@
 import SwiftUI
 
 
-class Order: ObservableObject {
+class Order: ObservableObject,
+             Codable {
+   
+   // MARK: - NESTED TYPES
+   
+   enum CodingKeys: CodingKey {
+      case cakeTypeIndex, numberOfCakes, hasFrosting, hasSprinkles, name, streetAddress, city, zip
+   }
+   
+   
    
    // MARK: - PROPERTY WRAPPERS
    
@@ -23,6 +32,30 @@ class Order: ObservableObject {
    @Published var streetAddress: String = ""
    @Published var city: String = ""
    @Published var zip: String = ""
+   
+   
+   
+   // MARK: - INITIALIZER METHODS
+   
+   required init(from decoder: Decoder)
+   throws {
+      
+      // let jsonDecoder: JSONDecoder = JSONDecoder()
+      
+      let decodingContainer = try decoder.container(keyedBy: CodingKeys.self)
+      
+      self.cakeTypeIndex = try decodingContainer.decode(Int.self   , forKey: CodingKeys.cakeTypeIndex)
+      self.numberOfCakes = try decodingContainer.decode(Int.self   , forKey: CodingKeys.numberOfCakes)
+      self.hasFrosting   = try decodingContainer.decode(Bool.self  , forKey: CodingKeys.hasFrosting)
+      self.hasSprinkles  = try decodingContainer.decode(Bool.self  , forKey: CodingKeys.hasSprinkles)
+      self.name          = try decodingContainer.decode(String.self, forKey: CodingKeys.name)
+      self.streetAddress = try decodingContainer.decode(String.self, forKey: CodingKeys.streetAddress)
+      self.city          = try decodingContainer.decode(String.self, forKey: CodingKeys.city)
+      self.zip           = try decodingContainer.decode(String.self, forKey: CodingKeys.zip)
+   }
+   
+   
+   init() {}
    
    
    
@@ -55,5 +88,24 @@ class Order: ObservableObject {
       cupcakeCost += hasSprinkles ? Double(numberOfCakes) / 2 : 0
       
       return cupcakeCost
+   }
+   
+   
+   
+   // MARK: METHODS
+   
+   func encode(to encoder: Encoder)
+   throws {
+      
+      var encodingContainer = encoder.container(keyedBy: CodingKeys.self)
+      
+      try encodingContainer.encode(cakeTypeIndex, forKey: CodingKeys.cakeTypeIndex)
+      try encodingContainer.encode(numberOfCakes, forKey: CodingKeys.numberOfCakes)
+      try encodingContainer.encode(hasFrosting, forKey: CodingKeys.hasFrosting)
+      try encodingContainer.encode(hasSprinkles, forKey: CodingKeys.hasSprinkles)
+      try encodingContainer.encode(name, forKey: CodingKeys.name)
+      try encodingContainer.encode(streetAddress, forKey: CodingKeys.streetAddress)
+      try encodingContainer.encode(city, forKey: CodingKeys.city)
+      try encodingContainer.encode(zip, forKey: CodingKeys.zip)
    }
 }
