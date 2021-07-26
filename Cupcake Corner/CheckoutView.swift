@@ -10,8 +10,9 @@ struct CheckoutView: View {
    // MARK: - PROPERTY WRAPPERS
    
    @ObservedObject var order: Order
-   @State private var isShowingAlert: Bool = false
+   @State private var isShowingConfirmationAlert: Bool = false
    @State private var alertMessage: String = ""
+   @State private var isShowingFailureAlert: Bool = false
    
    
    
@@ -38,9 +39,14 @@ struct CheckoutView: View {
          }
       }.navigationBarTitle("Checkout",
                            displayMode: .inline)
-      .alert(isPresented: $isShowingAlert) {
+      .alert(isPresented: $isShowingConfirmationAlert) {
          Alert(title: Text("Thank you!"),
                message: Text("\(alertMessage)"),
+               dismissButton: .default(Text("OK")))
+      }
+      .alert(isPresented: $isShowingFailureAlert) {
+         Alert(title: Text("Error"),
+               message: Text("There is no internet connection."),
                dismissButton: .default(Text("OK")))
       }
    }
@@ -86,6 +92,7 @@ struct CheckoutView: View {
          guard let _data = data
          else {
             print("No data in response: \(error?.localizedDescription ?? "Unknown Error")")
+            isShowingFailureAlert.toggle()
             return
          }
          /// If we make it past that , it means we got some sort of data back from the server .
@@ -100,9 +107,9 @@ struct CheckoutView: View {
          /// we’ll just print an error message :
          
          if let _decodedOrder = try? JSONDecoder().decode(Order.self,
-                                                         from: _data) {
+                                                          from: _data) {
             self.alertMessage = "You have ordered \(_decodedOrder.numberOfCakes) \(Order.cakeTypes[_decodedOrder.cakeTypeIndex].lowercased()) cakes."
-            isShowingAlert.toggle()
+            isShowingConfirmationAlert.toggle()
          } else {
             print("There has been an invalid response from the server.")
          }
