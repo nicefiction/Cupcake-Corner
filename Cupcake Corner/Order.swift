@@ -71,8 +71,13 @@ class Order: ObservableObject,
    // MARK: - COMPUTED PROPERTIES
    
    var hasValidAddress: Bool {
+      
+      let isValidName: Bool = name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+      let isValidStreetAddress: Bool = streetAddress.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+      let isValidCity: Bool = city.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+      let isValidZIP: Bool = zip.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
 
-      return name.isEmpty || streetAddress.isEmpty || city.isEmpty || zip.isEmpty ? false : true
+      return isValidName || isValidStreetAddress || isValidCity || isValidZIP ? false : true
    }
    
    
