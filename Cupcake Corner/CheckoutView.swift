@@ -9,10 +9,12 @@ struct CheckoutView: View {
    
    // MARK: - PROPERTY WRAPPERS
    
-   @ObservedObject var order: Order
+   let order: Order
+   // @ObservedObject var order: Order
    @State private var isShowingConfirmationAlert: Bool = false
-   @State private var alertMessage: String = ""
+   @State private var confirmationMessage: String = ""
    @State private var isShowingFailureAlert: Bool = false
+   @State private var failureMessage: String = "There is no internet connection."
    
    
    
@@ -35,20 +37,16 @@ struct CheckoutView: View {
                   Text("Place Order")
                }
                .padding()
+               .alert(isPresented: isShowingConfirmationAlert ? $isShowingConfirmationAlert : $isShowingFailureAlert) {
+                  Alert(title: Text("\(isShowingConfirmationAlert ? "Thank you!" : "Error")"),
+                        message: Text("\(isShowingConfirmationAlert ? confirmationMessage : failureMessage)"),
+                        dismissButton: .default(Text("OK")))
+               }
             }
          }
-      }.navigationBarTitle("Checkout",
-                           displayMode: .inline)
-      .alert(isPresented: $isShowingConfirmationAlert) {
-         Alert(title: Text("Thank you!"),
-               message: Text("\(alertMessage)"),
-               dismissButton: .default(Text("OK")))
       }
-      .alert(isPresented: $isShowingFailureAlert) {
-         Alert(title: Text("Error"),
-               message: Text("There is no internet connection."),
-               dismissButton: .default(Text("OK")))
-      }
+      .navigationBarTitle("Checkout",
+                          displayMode: .inline)
    }
    
    
@@ -99,37 +97,20 @@ struct CheckoutView: View {
          /// Because we are using the ReqRes.in ,
          /// we will actually get back to the same order we sent ,
          /// which means we can use JSONDecoder to convert that back from JSON to an object .
-         ///   And now we can finish off our networking code:
-         /// we’ll decode the data that came back,
-         /// use it to set our confirmation message property,
-         /// then set showingConfirmation to true so the alert appears .
-         /// If the decoding fails – if the server sent back something that wasn’t an order for some reason –
-         /// we’ll just print an error message :
-         
+         /// And now we can finish off our networking code:
+         /// we’ll decode the data that came back , ...
          if let _decodedOrder = try? JSONDecoder().decode(Order.self,
                                                           from: _data) {
-            self.alertMessage = "You have ordered \(_decodedOrder.numberOfCakes) \(Order.cakeTypes[_decodedOrder.cakeTypeIndex].lowercased()) cakes."
+            /// ... use it to set our confirmation message property,
+            /// then set showingConfirmation to true so the alert appears :
+            self.confirmationMessage = "You have ordered \(_decodedOrder.numberOfCakes) \(Order.cakeTypes[_decodedOrder.cakeTypeIndex].lowercased()) cakes."
             isShowingConfirmationAlert.toggle()
          } else {
+            /// If the decoding fails – if the server sent back something that wasn’t an order for some reason –
+            /// we’ll just print an error message :
             print("There has been an invalid response from the server.")
          }
       }.resume()
-      /*
-       if let _data = data {
-          if let _decodedResponse = try? JSONDecoder().decode(Response.self,
-                                                              from: _data) {
-             /// `4.1` We have good data , go back to the main thread :
-             DispatchQueue.main.async {
-                /// `4.2` Update our UI :
-                self.results = _decodedResponse.results
-             }
-             /// `4.3` Everything is good , so we can exit :
-             return
-          }
-       }
-       /// `4.4` If we are still here , it means there was a problem :
-       print("Fetch failed : \(error?.localizedDescription ?? "Unknown Error")")
-       */
    }
 }
 

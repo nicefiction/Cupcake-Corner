@@ -9,10 +9,10 @@ import SwiftUI
 
 @main
 struct Cupcake_CornerApp: App {
-    var body: some Scene {
-        WindowGroup {
-            // ContentView()
-         iTunesView()
-        }
-    }
+   var body: some Scene {
+      WindowGroup {
+         ContentView()
+         // iTunesView()
+      }
+   }
 }
